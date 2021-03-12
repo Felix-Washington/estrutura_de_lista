@@ -25,9 +25,13 @@ class Main:
             elif opcao == 2:
                 self.__lista.inserirNoFinal(dado)
 
+            elif opcao == 4:
+                self.__lista.buscar(dado)
+
             elif opcao == 0:
                 self.__executando = False
 
-            print(self.__lista.inicio.dado)
-            print(self.__lista.fim.dado)
+
+            print("lista_inicio" ,self.__lista.inicio.dado)
+            print("lista_fim", self.__lista.fim.dado)
             #print(self.__lista.atual.dado)

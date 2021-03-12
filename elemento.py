@@ -1,10 +1,11 @@
 
 
 class Elemento:
-    def __init__(self, dado):
+    def __init__(self, dado, id):
         self.__anterior = None
         self.__posterior = None
         self.__dado = dado
+        self.__id = id
 
     @property
     def anterior(self):
