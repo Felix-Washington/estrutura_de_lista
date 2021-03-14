@@ -52,7 +52,7 @@ class Main:
                 self.__lista.inserirAntesDoAtual(dado)
 
             elif opcao == 9:
-                self.__lista.inserirDepoisDoAtual()
+                self.__lista.inserirDepoisDoAtual(dado)
 
             elif opcao == 10:
                 self.__lista.avancarKPosicoes()
