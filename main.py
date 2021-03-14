@@ -20,9 +20,10 @@ class Main:
             print("5 - Mostra todos os elementos")
             print("6 - Remover elemento no final")
             print("7 - Remover elemento no início")
+            print("8 - Inserir antes do Atual")
 
             opcao = int(input("Digite uma opção\n"))
-            if opcao != 5 and opcao != 6 and opcao != 7:
+            if opcao < 5 or opcao > 7:
                 dado = int(input("Digite um valor\n"))
                 if opcao == 3:
                     posicao = int(input("Digite a posição desejada"))
@@ -46,6 +47,15 @@ class Main:
 
             elif opcao == 7:
                 self.__lista.remover_elemento_inicio()
+
+            elif opcao == 8:
+                self.__lista.inserirAntesDoAtual(dado)
+
+            elif opcao == 9:
+                self.__lista.inserirDepoisDoAtual()
+
+            elif opcao == 10:
+                self.__lista.avancarKPosicoes()
 
             elif opcao == 0:
                 self.__executando = False

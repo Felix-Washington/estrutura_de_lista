@@ -48,11 +48,22 @@ class Lista:
         elif k == 0:
             self.inserirNaFrente(dado)
         else:
+            novo_elemento = Elemento(dado)
+            while contador <= self.__tamanho:
+                print(self.__atual.dado)
+                if self.__atual is not None and k == contador:
+                    aux = self.__atual.posterior
+                    aus = self.__atual.anterior
+                    self.__atual.posterior = novo_elemento
+                    novo_elemento.posterior = aux.posterior
+                    aux.anterior = novo_elemento
+                    novo_elemento.anterior = self.__atual
 
-            while contador <= self.__n_elementos:
-                print(self.__atual)
-                if self.__atual.dado == dado:
-                    print("encontrou")
+
+                    print("dado", self.__atual.dado)
+                    print("ant",self.__atual.anterior.dado)
+                    print("pos", self.__atual.posterior.dado)
+                    break
 
                 else:
                     self.__atual = self.__atual.posterior
@@ -113,31 +124,43 @@ class Lista:
             self.__inicio = self.inicio.posterior
             self.__tamanho -= 1
 
+    def inserirAntesDoAtual(self, dado):
 
-    def inserirAntesDoAtual(self, atual, novo_elemento):
-        elemento_atual = self.buscar(atual)
-        novo = Elemento(novo_elemento)
-        if elemento_atual == self.__inicio:
-            novo.anterior = None
-            novo.posterior = elemento_atual
-            elemento_atual.anterior = novo.dado
-            self.__inicio = novo.dado
+        #self.__atual = self.__inicio.posterior
+
+        #print(self.__atual.anterior.dado)
+        #print(self.__atual.dado)
+        #elemento_atual = self.buscar(dado)
+        novo = Elemento(dado)
+        if self.__atual == self.__inicio:
+            print("tst")
+            self.inserirNaFrente(dado)
+
         else:
-            novo.anterior = elemento_atual.anterior
-            novo.posterior = elemento_atual
-            elemento_atual.anterior = novo.dado
+            aux = self.__atual.anterior
+            self.__atual.anterior = novo
+            novo.anterior = aux
+            novo.anterior.posterior = novo
+            novo.posterior = self.__atual
 
-        self.__atual = novo.dado
+            #novo.anterior = self.__atual.anterior
+            #novo.posterior = self.__atual
+            #elemento_atual.anterior = novo.dado
 
-    def inserirDepoisDoAtual(self, atual, novo_elemento):
-        elemento_atual = self.buscar(atual)
-        novo = Elemento(novo_elemento)
-        novo.anterior = elemento_atual
-        novo.posterior = elemento_atual.posterior
-        elemento_atual.posterior = novo.dado
-        self.__atual = novo.dado
+        #self.__atual = novo.dado
 
+    def inserirDepoisDoAtual(self, dado):
+        if self.__atual == self.__fim:
+            self.inserirNoFinal(dado)
 
+        else:
+
+            elemento_atual = self.__atual
+            novo = Elemento(dado)
+            novo.anterior = elemento_atual
+            novo.posterior = elemento_atual.posterior
+            elemento_atual.posterior = novo.dado
+            self.__atual = novo.dado
 
     def avancarKPosicoes(self, k):
         elemento = self.__inicio
@@ -164,8 +187,6 @@ class Lista:
             self.__atual = elemento
             return elemento
         raise ValueError("Nao existe essa posicao")
-
-
 
 
     @property
